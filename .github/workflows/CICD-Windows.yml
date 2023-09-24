@@ -14,18 +14,21 @@ jobs:
         PASSWORD: ${{ secrets.EC2_PASSWORD }}
       shell: pwsh
       run: |
-        echo "$env:PRIVATE_KEY" > private_key.pem
-        # Setting permissions in PowerShell
-        Invoke-Expression "icacls .\private_key.pem /inheritance:r"
-        Invoke-Expression "icacls .\private_key.pem /grant:r `$env:USERNAME`:`(R`)"
-        
-        # Debugging: Ensure that environment variables are set correctly
+        # Output environment variable values for debugging (avoid outputting sensitive information)
         Write-Output "HOST: $env:HOST"
         Write-Output "USERNAME: $env:USERNAME"
         
-        # Running SSH command
-        echo "Creating file on EC2 instance..."
-        chmod +x private_key.pem
-        ssh -v -o StrictHostKeyChecking=no -i private_key.pem "$env:USERNAME@$env:HOST" "echo 'Username: $env:USERNAME\nPassword: $env:PASSWORD' > D:\myfile.txt"
+        # Write the private key to a file and set permissions
+        echo "$env:PRIVATE_KEY" > private_key.pem
+        Invoke-Expression "icacls .\private_key.pem /inheritance:r"
+        Invoke-Expression "icacls .\private_key.pem /grant:r `$env:USERNAME`:`(R`)"
         
+        # Running SSH command and checking the return value
+        echo "Creating file on EC2 instance..."
+        ssh -v -o StrictHostKeyChecking=no -i private_key.pem "$env:USERNAME@$env:HOST" "echo 'Username: $env:USERNAME\nPassword: $env:PASSWORD' > D:\myfile.txt" 2>&1 | Write-Output
+        if ($LASTEXITCODE -ne 0) {
+          Write-Error "SSH command failed with exit code $LASTEXITCODE"
+          exit 1
+        }
+
         echo "File created."
