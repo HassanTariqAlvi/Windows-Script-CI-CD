@@ -12,10 +12,19 @@ jobs:
         HOST: ${{ secrets.EC2_HOST }}
         USERNAME: ${{ secrets.EC2_USERNAME }}
         PASSWORD: ${{ secrets.EC2_PASSWORD }}
+      shell: pwsh
       run: |
-        echo "$PRIVATE_KEY" > private_key.pem
-        chmod 600 private_key.pem
+        echo "$env:PRIVATE_KEY" > private_key.pem
+        # Setting permissions in PowerShell
+        Invoke-Expression "icacls .\private_key.pem /inheritance:r"
+        Invoke-Expression "icacls .\private_key.pem /grant:r `$env:USERNAME`:`(R`)"
+        
+        # Debugging: Ensure that environment variables are set correctly
+        Write-Output "HOST: $env:HOST"
+        Write-Output "USERNAME: $env:USERNAME"
+        
+        # Running SSH command
         echo "Creating file on EC2 instance..."
-        ssh -v -o StrictHostKeyChecking=no -i private_key.pem "$USERNAME@$HOST" "echo 'Username: $USERNAME\nPassword: $PASSWORD' > D:\myfile.txt"
-
+        ssh -v -o StrictHostKeyChecking=no -i private_key.pem "$env:USERNAME@$env:HOST" "echo 'Username: $env:USERNAME\nPassword: $env:PASSWORD' > D:\myfile.txt"
+        
         echo "File created."
