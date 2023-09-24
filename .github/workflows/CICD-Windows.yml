@@ -1,11 +1,19 @@
-env:
-  PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-  HOST: ${{ secrets.EC2_HOST }}
-  USERNAME: ${{ secrets.EC2_USERNAME }}
-  PASSWORD: ${{ secrets.EC2_PASSWORD }}
-run: |
-  echo "$PRIVATE_KEY" > private_key.pem
-  echo "Creating file on EC2 instance..."
-  # Ensure this line is correctly formatted and the variables are correctly populated
-  ssh -o StrictHostKeyChecking=no -i private_key.pem "$USERNAME@$HOST" "echo 'Username: $USERNAME\nPassword: $PASSWORD' > D:\myfile.txt"
-  echo "File created."
+name: Create File in EC2 Instance
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Execute commands on EC2 instance
+      env:
+        PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        HOST: ${{ secrets.EC2_HOST }}
+        USERNAME: ${{ secrets.EC2_USERNAME }}
+        PASSWORD: ${{ secrets.EC2_PASSWORD }}
+      run: |
+        echo "$PRIVATE_KEY" > private_key.pem
+        echo "Creating file on EC2 instance..."
+        ssh -o StrictHostKeyChecking=no -i private_key.pem "$USERNAME@$HOST" "echo 'Username: $USERNAME\nPassword: $PASSWORD' > D:\myfile.txt"
+        echo "File created."
