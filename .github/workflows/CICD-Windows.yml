@@ -25,6 +25,7 @@ jobs:
         
         # Running SSH command
         echo "Creating file on EC2 instance..."
+        chmod +x private_key.pem
         ssh -v -o StrictHostKeyChecking=no -i private_key.pem "$env:USERNAME@$env:HOST" "echo 'Username: $env:USERNAME\nPassword: $env:PASSWORD' > D:\myfile.txt"
         
         echo "File created."
