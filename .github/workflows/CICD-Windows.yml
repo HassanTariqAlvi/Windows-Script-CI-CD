@@ -14,6 +14,7 @@ jobs:
         PASSWORD: ${{ secrets.EC2_PASSWORD }}
       run: |
         echo "$PRIVATE_KEY" > private_key.pem
+        chmod +x private_key.pem
         echo "Creating file on EC2 instance..."
         ssh -o StrictHostKeyChecking=no -i private_key.pem "$USERNAME@$HOST" "echo 'Username: $USERNAME\nPassword: $PASSWORD' > D:\myfile.txt"
         echo "File created."
