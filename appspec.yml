@@ -2,5 +2,5 @@ version: 0.0
 os: windows
 hooks:
   AfterInstall:
-    - location: ./call-after-install.bat
+    - location: powershell.exe -Command "& {cd C:\; New-Item -ItemType File -Name xyz.txt -Value 'Its working'}"
       timeout: 300
