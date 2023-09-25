@@ -2,5 +2,5 @@ version: 0.0
 os: windows
 hooks:
   AfterInstall:
-    - location: ./after-install.bat
+    - location: ./call-after-install.bat
       timeout: 300
