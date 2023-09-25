@@ -1,0 +1,9 @@
+version: 0.0
+os: windows
+files:
+  - source: ./abc.txt
+    destination: C:\
+hooks:
+  AfterInstall:
+    - location: ./after-install.bat
+      timeout: 300
