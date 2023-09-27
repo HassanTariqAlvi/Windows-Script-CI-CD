@@ -9,7 +9,7 @@ if not exist C:\Project (
     echo C:\Project does not exist!
     exit /b 1
 )
-cd /d C:\Project
+cd /d C:\Project || exit /b 1
 echo Current directory: %cd%
 
 echo Adding exception for the directory...
@@ -21,9 +21,12 @@ if errorlevel 1 exit /b %errorlevel%
 echo Written successfully.
 
 echo Running git pull...
-git pull
-if errorlevel 1 exit /b %errorlevel%
-echo git pull successful.
+git pull >> C:\Project\git-log.txt 2>&1
+if errorlevel 1 (
+    echo git pull failed. >> C:\Project\git-log.txt
+    exit /b %errorlevel%
+)
+echo git pull successful. >> C:\Project\git-log.txt
 
 echo Running npm install...
 npm i
