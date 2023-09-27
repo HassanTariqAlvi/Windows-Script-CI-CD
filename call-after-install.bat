@@ -1,4 +1,5 @@
 @echo off
+taskkill /F /IM git.exe /T
 
 set PATH=%PATH%;C:\Path\To\nodejs
 
