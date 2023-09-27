@@ -1,7 +1,11 @@
 @echo off
 
 REM Write to C:\xyz.txt
-echo chal oye > C:\xyz.txt
+echo Working > C:\xyz.txt
+set PATH=%PATH%;C:\Program Files\nodejs;C:\Program Files\Git\cmd
 
 cd C:\Project\Project-1
-call deploy.bat
+git pull
+npm i
+
+REMcall deploy.bat
