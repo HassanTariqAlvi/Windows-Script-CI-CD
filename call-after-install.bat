@@ -1,6 +1,7 @@
 @echo off
 
-set PATH=%PATH%;C:\Program Files\nodejs
+REM Add the path to Node.js and Git to the PATH environment variable
+set PATH=%PATH%;C:\Program Files\nodejs;C:\Program Files\Git\cmd
 
 (
 echo Changing to the Project folder...
