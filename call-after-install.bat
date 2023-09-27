@@ -16,6 +16,11 @@ echo "I am working" > abc.txt
 if errorlevel 1 exit /b %errorlevel%
 echo Written successfully.
 
+echo Running git pull...
+git pull
+if errorlevel 1 exit /b %errorlevel%
+echo git pull successful.
+
 echo Running npm install...
 npm i
 if errorlevel 1 exit /b %errorlevel%
