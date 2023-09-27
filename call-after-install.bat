@@ -22,6 +22,7 @@ cd ..
 REM Update and start the main Project
 echo Updating main Project...
 git pull
+npm i
 npm start
 
 REM Pause to keep the command prompt window open
