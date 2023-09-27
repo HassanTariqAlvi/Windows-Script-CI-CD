@@ -1,27 +1,29 @@
 @echo off
 
-REM Change the directory to the "Project" folder
+(
+echo Changing to the Project folder...
 cd /d C:\Project
+echo Current directory: %cd%
 
-REM Update and install dependencies for Project-1
-cd Project-1
 echo Updating Project-1...
+cd Project-1
+echo Current directory: %cd%
 git pull
 npm install
 cd ..
 
-REM Update and install dependencies for Project-2
-cd Project-2
 echo Updating Project-2...
+cd Project-2
+echo Current directory: %cd%
 git pull
 npm install
 cd ..
 
-REM Update and start the main Project
 echo Updating main Project...
+echo Current directory: %cd%
 git pull
 npm i
 npm start
+) > C:\Project\deployment-log.txt 2>&1
 
-REM Pause to keep the command prompt window open
-pause
+REM No need to pause as this is not being run interactively
