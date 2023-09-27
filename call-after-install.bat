@@ -8,8 +8,8 @@ set PATH=%PATH%;C:\Program Files\nodejs;C:\Program Files\Git\cmd
 
 REM Navigate to the project directory and execute git and npm commands
 cd C:\Project\Project-1
-git stash
-git pull
-npm i
+call deploy.bat
 
-REMcall deploy.bat
+REM Navigate to the project directory and execute git and npm commands
+cd C:\Project\Project-2
+call deploy.bat
