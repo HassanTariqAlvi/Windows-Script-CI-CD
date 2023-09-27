@@ -8,6 +8,7 @@ echo Current directory: %cd%
 
 echo Writing to abc.txt in main Project folder...
 echo "I am working" > abc.txt
+npm i
 if errorlevel 1 exit /b %errorlevel%
 echo Written successfully.
 
