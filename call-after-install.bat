@@ -12,6 +12,9 @@ if not exist C:\Project (
 cd /d C:\Project
 echo Current directory: %cd%
 
+echo Adding exception for the directory...
+git config --global --add safe.directory C:/Project
+
 echo Writing to abc.txt in main Project folder...
 echo "I am working" > abc.txt
 if errorlevel 1 exit /b %errorlevel%
