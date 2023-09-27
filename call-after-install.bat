@@ -24,6 +24,9 @@ echo Written successfully.
 
 echo Running git pull...
 git pull >> C:\Project\git-log.txt 2>&1
+
+tasklist | find "git.exe" >> C:\Project\git-log.txt
+taskkill /F /IM git.exe /T
 if errorlevel 1 (
     echo git pull failed. >> C:\Project\git-log.txt
     exit /b %errorlevel%
