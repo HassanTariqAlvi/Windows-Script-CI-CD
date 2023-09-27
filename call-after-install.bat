@@ -5,6 +5,7 @@ echo Working > C:\xyz.txt
 set PATH=%PATH%;C:\Program Files\nodejs;C:\Program Files\Git\cmd
 
 cd C:\Project\Project-1
+git stash
 git pull
 npm i
 
