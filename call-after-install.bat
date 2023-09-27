@@ -1,6 +1,6 @@
 @echo off
 
-set PATH=%PATH%;C:\Program Files\nodejs
+set PATH=%PATH%;C:\Path\To\nodejs
 
 (
 echo Changing to the Project folder...
@@ -15,11 +15,6 @@ echo Writing to abc.txt in main Project folder...
 echo "I am working" > abc.txt
 if errorlevel 1 exit /b %errorlevel%
 echo Written successfully.
-
-echo Running git pull...
-git pull
-if errorlevel 1 exit /b %errorlevel%
-echo git pull successful.
 
 echo Running npm install...
 npm i
