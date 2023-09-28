@@ -20,8 +20,5 @@ echo Logging for Project-2 >> %LOGFILE%
 call deploy.bat >> %LOGFILE%
 cd ..
 
-cd C:\Project
-echo Logging for Project-3 >> %LOGFILE%
-call deploy.bat >> %LOGFILE%
 
 REM Done, log file contains the output of git and npm commands
