@@ -1,7 +1,7 @@
 @echo off
 
 REM Write to C:\xyz.txt
-echo Working-001 > C:\xyz.txt
+echo Working-1 > C:\xyz.txt
 
 
 
