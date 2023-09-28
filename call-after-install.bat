@@ -12,7 +12,3 @@ call deploy.bat
 
 cd C:\Project\Project-2
 call deploy.bat
-
-
-cd C:\Project
-call deploy.bat
