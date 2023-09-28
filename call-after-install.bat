@@ -1,24 +1,18 @@
 @echo off
 
-REM Define the log file path
-set LOGFILE=C:\Project\git-logs.txt
-
-REM Clear the log file
-echo. > %LOGFILE%
-
 REM Write to C:\xyz.txt
 echo Working > C:\xyz.txt
 
-REM Navigate to the project directory and execute git and npm commands, appending output to the log file
+
+
+REM Navigate to the project directory and execute git and npm commands
 cd C:\Project\Project-1
-echo Logging for Project-1 >> %LOGFILE%
-call deploy.bat >> %LOGFILE%
-cd ..
+
+call deploy.bat
 
 cd C:\Project\Project-2
-echo Logging for Project-2 >> %LOGFILE%
-call deploy.bat >> %LOGFILE%
-cd ..
+call deploy.bat
 
 
-REM Done, log file contains the output of git and npm commands
+cd C:\Project
+call deploy.bat
