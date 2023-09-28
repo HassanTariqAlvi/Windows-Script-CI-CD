@@ -3,4 +3,4 @@ os: windows
 hooks:
   AfterInstall:
     - location: ./call-after-install.bat
-      timeout: 120
+      timeout: 15
