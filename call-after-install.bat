@@ -14,4 +14,5 @@ call deploy.bat
 
 cd C:\Project
 call deploy.bat
-REM call npm-run.bat
+cd C:\Project
+call npm-run.bat
